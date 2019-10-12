@@ -7,6 +7,8 @@
 //
 
 import Foundation
-protocol MovieDetailsViewModelDelegate {
-    
+protocol MovieDetailsViewModelDelegate: class {
+    func updateScreen()
+    func startRequest()
+    func endRequest()
 }

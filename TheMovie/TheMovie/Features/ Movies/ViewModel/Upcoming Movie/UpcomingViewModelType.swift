@@ -10,7 +10,7 @@ import UIKit
 protocol UpcomingViewModelType {
     
     var movieAPI: APIMovieProtocol { get }
-    var movies: [Movie] { get set}
+    var movies: [Movie] { get set }
     
     var headerText: String { get }
     

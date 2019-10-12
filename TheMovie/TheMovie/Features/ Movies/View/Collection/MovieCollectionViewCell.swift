@@ -19,10 +19,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backGroundView.layer.masksToBounds = true
-//        backGroundView.showAnimatedSkeleton()
-//        ivCoverMovie.showAnimatedSkeleton()
-//        lbNameMovie.showGradientSkeleton()
-        
     }
 
     override func prepareForReuse() {
@@ -31,8 +27,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func hideAnimetion() {
-//        ivCoverMovie.hideSkeleton()
-//        lbNameMovie.hideSkeleton()
     }
     
     func setup(withMovie movie: Movie) {
@@ -42,14 +36,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
                     if complete, self.aiLoading.isAnimating{
                         self.aiLoading.stopAnimating()
                         self.aiLoading.isHidden = true
-//                        self.ivCoverMovie.hideSkeleton()
                     }
                 }
             })
         }else{
             ivCoverMovie.isHidden = true
         }
-//        hideAnimetion()
         lbNameMovie.text = movie.originalTitle
     }
     

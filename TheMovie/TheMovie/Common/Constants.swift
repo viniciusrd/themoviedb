@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum TypeImage {
     case compressedImage
@@ -31,4 +32,10 @@ struct Constants {
         }
         return "https://image.tmdb.org/t/p/"+path
     }
+    
+}
+
+struct Colors {
+    static let appBarTintColor = #colorLiteral(red: 0, green: 0.8320397735, blue: 0.457329154, alpha: 1)
+    static let appBarTextTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 }

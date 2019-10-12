@@ -17,9 +17,28 @@ class BaseViewController<T>: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupNavigationBar()
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupNavigationBar(){
+        self.navigationController?.navigationBar.barTintColor = Colors.appBarTintColor
+        self.navigationController?.navigationBar.topItem
+        self.navigationController?.navigationBar.tintColor = Colors.appBarTextTintColor
+        
+    }
+    
+    func setupUI(){}
     func configure(viewModel: T) {}
 }

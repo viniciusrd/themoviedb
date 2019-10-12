@@ -25,7 +25,7 @@ class UpcomingMovieViewModel: UpcomingViewModelType {
     var movies: [Movie] = []
     
     var headerText: String{
-        return "Upcoming Movies"
+        return "Movies"
     }
     
     func viewDidLoad() {
@@ -34,7 +34,7 @@ class UpcomingMovieViewModel: UpcomingViewModelType {
     
     func upcomingMovies(){
         viewModelDelegate?.startRequest()
-        movieAPI.popularMovies(forPage: "1", forLanguage: Constants.language) { (response) in
+        movieAPI.upcomingMovies(forPage: "1", forLanguage: Constants.language) { (response) in
             self.viewModelDelegate?.endRequest()
             switch response{
             case .success(let response):

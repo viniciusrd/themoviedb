@@ -7,6 +7,6 @@
 //
 
 import Foundation
-protocol MovieDetailsCoordinatorDelegate {
+protocol MovieDetailsCoordinatorDelegate: class {
     
 }

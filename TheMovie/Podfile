@@ -7,6 +7,7 @@ target 'TheMovie' do
 
   # Pods for TheMovie
   pod "SkeletonView"
+  pod "ViewAnimator"
 
   target 'TheMovieTests' do
     inherit! :search_paths

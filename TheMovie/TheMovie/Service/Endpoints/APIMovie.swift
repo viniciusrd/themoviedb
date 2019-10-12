@@ -9,18 +9,18 @@
 import Foundation
 
 protocol APIMovieProtocol: AnyObject {
-    func popularMovies(forPage page: String , forLanguage language: String, completion: @escaping APIRequest.ResponseBlock<MoviesResponse>)
+    func upcomingMovies(forPage page: String , forLanguage language: String, completion: @escaping APIRequest.ResponseBlock<MoviesResponse>)
     func movieDetails(forMovie id: Int, completion: @escaping APIRequest.ResponseBlock<MovieDetails>)
     func searchMovie(forQuery queryMovie: QueryMovie , completion: @escaping APIRequest.ResponseBlock<MoviesResponse>)
 }
 
 class APIMovieDefault: APIMovieProtocol {
     
-    func popularMovies(forPage page: String, forLanguage language: String, completion: @escaping APIRequest.ResponseBlock<MoviesResponse>) {
+    func upcomingMovies(forPage page: String, forLanguage language: String, completion: @escaping APIRequest.ResponseBlock<MoviesResponse>) {
         let parameters = [ "language": language,
                            "page": page
                          ]
-        let request = APIRequest(method: .get, path: "/movie/popular", parametersURL: parameters)
+        let request = APIRequest(method: .get, path: "/movie/upcoming", parametersURL: parameters)
         request.makeRequest { (data, response, error) in
             print(response as Any)
             

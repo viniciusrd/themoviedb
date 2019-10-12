@@ -8,9 +8,10 @@
 
 import Foundation
 protocol MovieDetailsViewModelType {
+    var movieAPI: APIMovieProtocol { get }
+    var movie: MovieDetails? { get set }
     
     var movieId: Int { get set }
-//    var movieDetails: MovieDetails { get set }
     var headerText: String { get }
     
     func viewDidLoad()

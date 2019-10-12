@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import SkeletonView
+import ViewAnimator
 
 class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
 
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var aiLoading: UIActivityIndicatorView!
     
     let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
     
@@ -26,10 +28,31 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
         viewModel.viewDidLoad()
         viewModel.viewModelDelegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = viewModel.headerText
+    }
+    
+//    override func setupNavigationBar() {
+//        super.setupNavigationBar()
+//        
+//    }
+    
     func reloadData()  {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.animationCollectionView()
         }
+    }
+    
+    func animationCollectionView()  {
+        //collectionView.
+        let diractionAnimation = AnimationType.from(direction: .bottom, offset: 30.0)
+        UIView.animate(views: collectionView.visibleCells,
+                           animations: [diractionAnimation],
+                           duration: 0.5)
+        
     }
 }
 
@@ -52,6 +75,7 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
         let movie = viewModel.movies[indexPath.row]
         cell.setup(withMovie: movie)
+        animationCollectionView()
         return cell
     }
 }
@@ -59,14 +83,14 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
-    ///Set  size of the cell for collection
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let inset:CGFloat = 16
+        let inset:CGFloat = 18
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 250)
+        return CGSize(width: 180, height: 250)
     }
 }
 
@@ -76,10 +100,15 @@ extension UpcomingMoviesViewController: UpcomingViewModelDelegate{
     }
     
     func startRequest() {
-        
+        DispatchQueue.main.async {
+            self.aiLoading.startAnimating()
+        }
     }
     
     func endRequest() {
-        
+        DispatchQueue.main.async {
+            self.aiLoading.stopAnimating()
+            self.aiLoading.isHidden = true
+        }
     }
 }
