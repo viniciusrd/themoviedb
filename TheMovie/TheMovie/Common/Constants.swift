@@ -19,6 +19,7 @@ struct Constants {
     static let movieHost = "api.themoviedb.org"
     static let movieVersionAPI = "/3"
     static let movieApiKey = "c5850ed73901b8d268d0898a8a9d8bff"
+    static let language = "en-US"
     
     static func movieImageHost(type: TypeImage) -> String{
         var path = ""

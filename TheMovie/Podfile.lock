@@ -1,0 +1,16 @@
+PODS:
+  - SkeletonView (1.8)
+
+DEPENDENCIES:
+  - SkeletonView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SkeletonView
+
+SPEC CHECKSUMS:
+  SkeletonView: c0717eaa2423d6fe1d684fad17b157ea7800f443
+
+PODFILE CHECKSUM: 6caa6a506cfaa48bc3ae5cfe6dab34b4ecdaf57e
+
+COCOAPODS: 1.7.5

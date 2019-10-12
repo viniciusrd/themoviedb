@@ -20,11 +20,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3b-dE-euC">
-                    <rect key="frame" x="0.0" y="32" width="414" height="864"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3OA-wW-2Hx">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="864"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="backgroundColor" red="0.13333333333333333" green="0.14901960784313725" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wvn-ai-PQH">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -33,7 +33,7 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" red="0.13333333333333333" green="0.14901960784313725" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="3OA-wW-2Hx" firstAttribute="leading" secondItem="r3b-dE-euC" secondAttribute="leading" id="0c3-j0-h9S"/>
                         <constraint firstAttribute="trailing" secondItem="3OA-wW-2Hx" secondAttribute="trailing" id="9m6-H1-5c6"/>
@@ -47,7 +47,7 @@
                 <constraint firstAttribute="bottom" secondItem="r3b-dE-euC" secondAttribute="bottom" id="1Bx-dB-wlr"/>
                 <constraint firstItem="r3b-dE-euC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="VSo-aV-0Kd"/>
                 <constraint firstItem="r3b-dE-euC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mRH-jJ-X3N"/>
-                <constraint firstItem="r3b-dE-euC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="rhJ-Om-t41"/>
+                <constraint firstItem="r3b-dE-euC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rhJ-Om-t41"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="140.57971014492756" y="153.34821428571428"/>

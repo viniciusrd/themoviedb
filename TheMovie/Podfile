@@ -6,6 +6,7 @@ target 'TheMovie' do
   use_frameworks!
 
   # Pods for TheMovie
+  pod "SkeletonView"
 
   target 'TheMovieTests' do
     inherit! :search_paths

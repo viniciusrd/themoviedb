@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SkeletonView
 
 class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
 
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
+    let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,14 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        
+        viewModel.viewDidLoad()
+        viewModel.viewModelDelegate = self
+    }
+    func reloadData()  {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -28,9 +37,7 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
 
 extension UpcomingMoviesViewController : UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
-
+        viewModel.didSelectRow(indexPath.row, from: self)
     }
 }
 
@@ -38,11 +45,13 @@ extension UpcomingMoviesViewController : UICollectionViewDelegate{
 
 extension UpcomingMoviesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
+        let movie = viewModel.movies[indexPath.row]
+        cell.setup(withMovie: movie)
         return cell
     }
 }
@@ -58,5 +67,19 @@ extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 250)
+    }
+}
+
+extension UpcomingMoviesViewController: UpcomingViewModelDelegate{
+    func updateScreen() {
+        self.reloadData()
+    }
+    
+    func startRequest() {
+        
+    }
+    
+    func endRequest() {
+        
     }
 }

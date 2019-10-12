@@ -18,7 +18,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ivCoverMovie.layer.masksToBounds = true
+        backGroundView.layer.masksToBounds = true
+//        backGroundView.showAnimatedSkeleton()
+//        ivCoverMovie.showAnimatedSkeleton()
+//        lbNameMovie.showGradientSkeleton()
+        
     }
 
     override func prepareForReuse() {
@@ -26,8 +30,27 @@ class MovieCollectionViewCell: UICollectionViewCell {
         lbNameMovie.text = nil
     }
     
+    func hideAnimetion() {
+//        ivCoverMovie.hideSkeleton()
+//        lbNameMovie.hideSkeleton()
+    }
+    
     func setup(withMovie movie: Movie) {
-        
+        if let posterURL =  movie.posterPath {
+            ivCoverMovie.setImageFromURL(toPath: posterURL, toType: .compressedImage, completion: { (complete) in
+                DispatchQueue.main.async() {
+                    if complete, self.aiLoading.isAnimating{
+                        self.aiLoading.stopAnimating()
+                        self.aiLoading.isHidden = true
+//                        self.ivCoverMovie.hideSkeleton()
+                    }
+                }
+            })
+        }else{
+            ivCoverMovie.isHidden = true
+        }
+//        hideAnimetion()
+        lbNameMovie.text = movie.originalTitle
     }
     
 }
