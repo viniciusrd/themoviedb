@@ -14,7 +14,10 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var svBottomLoading: UIStackView!
+    @IBOutlet weak var aiBottomLoading: UIActivityIndicatorView!
     @IBOutlet weak var aiLoading: UIActivityIndicatorView!
+    @IBOutlet weak var constraintBottomSvLoading: NSLayoutConstraint!
     
     let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
     
@@ -61,7 +64,7 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
     func reloadData()  {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            self.animationCollectionView()
+//            self.animationCollectionView()
         }
     }
     
@@ -86,6 +89,7 @@ extension UpcomingMoviesViewController : UICollectionViewDelegate{
 // MARK: - UICollectionViewDataSource
 
 extension UpcomingMoviesViewController: UICollectionViewDataSource{
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItems()
     }
@@ -94,8 +98,25 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
         let movie = viewModel.movies[indexPath.row]
         cell.setup(withMovie: movie)
-        animationCollectionView()
+//        animationCollectionView()
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == self.viewModel.numberOfItems() - 1 {
+            print("last cell \(indexPath.row) ")
+            self.svBottomLoading.isHidden = false
+            self.aiBottomLoading.startAnimating()
+            self.constraintBottomSvLoading.constant = 22
+            guard let page = self.viewModel.pagination?.page else { return }
+            self.viewModel.pagination?.page = page + 1
+            self.viewModel.upcomingMovies()
+            
+        }else{
+            self.svBottomLoading.isHidden = true
+            self.aiBottomLoading.stopAnimating()
+            self.constraintBottomSvLoading.constant = -90
+        }
     }
 }
 
@@ -104,12 +125,17 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
 extension UpcomingMoviesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let inset:CGFloat = 18
+        let inset:CGFloat = 16
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 250)
+        let screenSize: CGRect = UIScreen.main.bounds
+        if screenSize.width >= 414 && screenSize.height >= 896{
+            return CGSize(width: 180, height: 250)
+        }else{
+             return CGSize(width: 160, height: 230)
+        }
     }
 }
 

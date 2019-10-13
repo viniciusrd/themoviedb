@@ -29,18 +29,31 @@ class UpcomingMovieViewModel: UpcomingViewModelType {
     
     var searchText: String?
     
+    var pagination: Pagination?
+    
+    init() {
+        self.pagination = Pagination(page: 1, totalResults: 0, totalPage: 0)
+    }
+    
     func viewDidLoad() {
         upcomingMovies()
     }
     
     func upcomingMovies(){
         viewModelDelegate?.startRequest()
-        movieAPI.upcomingMovies(forPage: "1", forLanguage: Constants.language) { (response) in
+        guard let pagination = self.pagination else { return }
+        movieAPI.upcomingMovies(forPage: String(pagination.page), forLanguage: Constants.language) { (response) in
             self.viewModelDelegate?.endRequest()
             switch response{
             case .success(let response):
                 guard let response = response else { return }
-                self.movies = response.movies
+                self.pagination = Pagination(page: response.page, totalResults: response.totalResults, totalPage: response.totalPage)
+                if self.pagination?.page ?? 1 > 1{
+                    print(response.movies)
+                    self.movies = response.movies
+                }else{
+                    self.movies = response.movies
+                }
                 self.viewModelDelegate?.updateScreen()
             case .failure(let error):
                 guard let error = error else { return }

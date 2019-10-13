@@ -12,6 +12,7 @@ protocol UpcomingViewModelType {
     var movieAPI: APIMovieProtocol { get }
     var movies: [Movie] { get set }
     
+    var pagination: Pagination? { get set}
     var headerText: String { get }
     var searchText: String? {get set}
     

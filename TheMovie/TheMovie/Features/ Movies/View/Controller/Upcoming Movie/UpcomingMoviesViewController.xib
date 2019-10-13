@@ -9,9 +9,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpcomingMoviesViewController" customModule="TheMovie" customModuleProvider="target">
             <connections>
+                <outlet property="aiBottomLoading" destination="cti-3v-put" id="cz2-vt-P0K"/>
                 <outlet property="aiLoading" destination="czy-f0-eTF" id="VxN-Rq-fKC"/>
                 <outlet property="backGroundView" destination="r3b-dE-euC" id="qxr-K8-MO4"/>
                 <outlet property="collectionView" destination="3OA-wW-2Hx" id="78T-fC-QJb"/>
+                <outlet property="constraintBottomSvLoading" destination="3pf-YV-2dC" id="UFD-NC-68F"/>
+                <outlet property="svBottomLoading" destination="Y3r-ef-g6u" id="7yI-xU-qfD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,13 +27,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3OA-wW-2Hx">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="897.5"/>
                             <color key="backgroundColor" red="0.13333333333333333" green="0.14901960784313725" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wvn-ai-PQH">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                             </collectionViewFlowLayout>
                         </collectionView>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="czy-f0-eTF">
@@ -41,14 +44,35 @@
                             </constraints>
                             <color key="color" red="0.37254901959999998" green="0.81176470590000005" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </activityIndicatorView>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y3r-ef-g6u">
+                            <rect key="frame" x="8" y="897.5" width="398" height="88.5"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cti-3v-put">
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="mcp-aN-hx7"/>
+                                    </constraints>
+                                    <color key="color" red="0.37254901959999998" green="0.81176470590000005" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </activityIndicatorView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search more..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoN-RV-aD9">
+                                    <rect key="frame" x="0.0" y="68" width="398" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.41801518199999999" green="0.42690908910000003" blue="0.44437122340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.078431372549019607" green="0.19215686274509802" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="3OA-wW-2Hx" firstAttribute="leading" secondItem="r3b-dE-euC" secondAttribute="leading" id="0c3-j0-h9S"/>
+                        <constraint firstAttribute="bottom" secondItem="Y3r-ef-g6u" secondAttribute="bottom" constant="-90" id="3pf-YV-2dC"/>
                         <constraint firstAttribute="trailing" secondItem="3OA-wW-2Hx" secondAttribute="trailing" id="9m6-H1-5c6"/>
                         <constraint firstItem="czy-f0-eTF" firstAttribute="centerX" secondItem="r3b-dE-euC" secondAttribute="centerX" id="FPo-Vz-8mG"/>
-                        <constraint firstAttribute="bottom" secondItem="3OA-wW-2Hx" secondAttribute="bottom" id="IqG-50-SDE"/>
                         <constraint firstItem="3OA-wW-2Hx" firstAttribute="top" secondItem="r3b-dE-euC" secondAttribute="top" id="M1Y-Gb-vJ9"/>
+                        <constraint firstAttribute="trailing" secondItem="Y3r-ef-g6u" secondAttribute="trailing" constant="8" id="cg6-Jn-tX6"/>
+                        <constraint firstItem="Y3r-ef-g6u" firstAttribute="leading" secondItem="r3b-dE-euC" secondAttribute="leading" constant="8" id="o9q-iv-7U1"/>
+                        <constraint firstItem="Y3r-ef-g6u" firstAttribute="top" secondItem="3OA-wW-2Hx" secondAttribute="bottom" id="v7Q-TG-Bmb"/>
                         <constraint firstItem="czy-f0-eTF" firstAttribute="centerY" secondItem="r3b-dE-euC" secondAttribute="centerY" id="xej-OO-Rcw"/>
                     </constraints>
                 </view>
