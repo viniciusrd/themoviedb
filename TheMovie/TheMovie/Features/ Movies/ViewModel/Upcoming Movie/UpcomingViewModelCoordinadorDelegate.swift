@@ -8,5 +8,6 @@
 
 import UIKit
 protocol UpcomingViewModelCoordinadorDelegate: class {
+    func showErrorUpcomingMovie(withError error: Error)
     func didSelectedMovie(movie: Movie, from viewController: UIViewController)
 }

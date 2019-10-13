@@ -6,7 +6,7 @@
 //  Copyright © 2019 Vinicius Rodrigues. All rights reserved.
 //
 
-import Foundation
+import UIKit
 class MovieDetailsViewModel: MovieDetailsViewModelType {
    
     var movieAPI: APIMovieProtocol{
@@ -46,9 +46,13 @@ class MovieDetailsViewModel: MovieDetailsViewModelType {
             case .failure(let error):
                 guard let error = error else { return }
                 print(error.localizedDescription)
+                self.coodinatorDelegate?.showErrorMovieDetails(withError: error)
             }
         }
     }
     
+    func didTapButtonMoreAbout(from controller: UIViewController) {
+        coodinatorDelegate?.showMoreAboutMovie(withUrl: self.movie?.homepage , from: controller)
+    }
     
 }

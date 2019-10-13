@@ -6,7 +6,8 @@
 //  Copyright © 2019 Vinicius Rodrigues. All rights reserved.
 //
 
-import Foundation
+import UIKit
 protocol MovieDetailsCoordinatorDelegate: class {
-    
+    func showErrorMovieDetails(withError error: Error)
+    func showMoreAboutMovie(withUrl url: String?, from viewController: UIViewController)
 }

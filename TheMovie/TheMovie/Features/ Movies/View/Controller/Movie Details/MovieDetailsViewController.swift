@@ -90,6 +90,7 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
                         self.ivCoverMovie.isHidden = false
                         self.svOverview.isHidden = false
                         self.ivCoverMovie.isHidden = false
+                        self.btnMoreAbout.isHidden = false
                         UIView.animate(withDuration: 2.5) {
                             self.constraintTopSvInfo.constant = -20
                             self.lbTitle.alpha = 1.0
@@ -104,7 +105,7 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
             }
             self.lbTitle.text = movie.originalTitle
             self.lbSubtitle.text = movie.tagline
-            self.lbStatus.text = "\(movie.status): "
+            self.lbStatus.text = "\(movie.status ?? ""): "
             self.lbDescription.text = movie.overview
             self.lbGenre.text = movie.genres[0].name
             self.lbReleased.text = movie.releaseDate
@@ -114,7 +115,7 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
         }
     }
     @IBAction func tapMoreAbout(_ sender: Any) {
-        
+        viewModel.didTapButtonMoreAbout(from: self)
     }
 }
 

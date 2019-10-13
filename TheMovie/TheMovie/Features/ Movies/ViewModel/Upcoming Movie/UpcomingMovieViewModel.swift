@@ -44,6 +44,7 @@ class UpcomingMovieViewModel: UpcomingViewModelType {
             case .failure(let error):
                 guard let error = error else { return }
                 print(error.localizedDescription)
+                self.coodinatorDelegate?.showErrorUpcomingMovie(withError: error)
             }
         }
     }

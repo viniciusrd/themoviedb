@@ -9,27 +9,27 @@
 import Foundation
 
 struct MovieDetails: Codable {
-    let adult: Bool
-    let backDropPath: String
+    let adult: Bool?
+    let backDropPath: String?
     let genres: [Genre]
-    let homepage: String
+    let homepage: String?
     let id: Int
-    let originalLanguage: String
-    let originalTitle: String
-    let overview: String
-    let popularity: Double
+    let originalLanguage: String?
+    let originalTitle: String?
+    let overview: String?
+    let popularity: Double?
     let posterPath:String
-    let companies: [Companies]
+    let companies: [Companies]?
     let productionCountry: [Country]
-    let releaseDate: String
-    let revenue: Int
+    let releaseDate: String?
+    let revenue: Int?
     let runtime: Int
-    let language: [Language]
-    let status:String
-    let tagline:String
-    let title: String
-    let video: Bool
-    let voteAverage: Double
+    let language: [Language]?
+    let status:String?
+    let tagline:String?
+    let title: String?
+    let video: Bool?
+    let voteAverage: Double?
     let voteCount: Int
     
     enum CodingKeys: String, CodingKey {
