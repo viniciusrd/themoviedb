@@ -34,7 +34,7 @@ class BaseViewController<T>: UIViewController {
     
     func setupNavigationBar(){
         self.navigationController?.navigationBar.barTintColor = Colors.appBarTintColor
-        self.navigationController?.navigationBar.topItem
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Colors.appBarTextTintColor]
         self.navigationController?.navigationBar.tintColor = Colors.appBarTextTintColor
         
     }

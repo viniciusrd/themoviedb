@@ -14,14 +14,13 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
     
     @IBOutlet weak var scroolView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var containerView: UIView!
+    
     
     @IBOutlet weak var coverView: CustomView!
     @IBOutlet weak var ivCoverMovie: UIImageView!
     
     @IBOutlet weak var svInfo: UIStackView!
     
-    @IBOutlet weak var contentContainerView: CustomView!
     @IBOutlet weak var svTitle: UIStackView!
     @IBOutlet weak var svViewReleased: UIStackView!
     @IBOutlet weak var svOverview: UIStackView!
@@ -36,10 +35,8 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
     
     @IBOutlet weak var btnMoreAbout: CustomButton!
     
-    @IBOutlet weak var contraintTopSvInfo: NSLayoutConstraint!
-    @IBOutlet weak var constraintTopContentView: NSLayoutConstraint!
-    @IBOutlet weak var contraintTopButton: NSLayoutConstraint!
-    @IBOutlet weak var constraintBottomButton: NSLayoutConstraint!
+    @IBOutlet weak var constraintTopSvInfo: NSLayoutConstraint!
+    //    @IBOutlet weak var constraintBottomButton: NSLayoutConstraint!
     
     @IBOutlet weak var lbRuntime: UILabel!
     @IBOutlet weak var lbGenre: UILabel!
@@ -72,12 +69,9 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
         self.svInfo.isHidden = true
         self.svOverview.isHidden = true
         self.btnMoreAbout.isHidden = true
-        self.containerView.isHidden = true
-        self.contraintTopSvInfo.constant = 0
-        self.constraintBottomButton.constant = -40
-        
-        self.btnMoreAbout.frame = CGRect(x: 100, y: 100, width: 0, height: 0)
-        
+        self.coverView.isHidden = true
+        self.constraintTopSvInfo.constant = 0
+
         self.lbTitle.alpha = 0.0
         self.lbSubtitle.alpha = 0.0
         self.lbStatus.alpha = 0.0
@@ -89,25 +83,23 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
         DispatchQueue.main.async {
             self.ivCoverMovie.setImageFromURL(toPath: movie.posterPath, toType: .fullImage) { (completed) in
                 DispatchQueue.main.async {
+                    
                     UIView.transition(with: self.view, duration: 2.5, options: .transitionCrossDissolve, animations: {
+                        self.svInfo.isHidden = false
+                        self.coverView.isHidden = false
+                        self.ivCoverMovie.isHidden = false
+                        self.svOverview.isHidden = false
                         self.ivCoverMovie.isHidden = false
                         UIView.animate(withDuration: 2.5) {
-                            self.contraintTopSvInfo.constant = -20
-                            self.svInfo.isHidden = false
-                            self.svOverview.isHidden = false
-                            self.containerView.isHidden = false
+                            self.constraintTopSvInfo.constant = -20
                             self.lbTitle.alpha = 1.0
                             self.lbSubtitle.alpha = 1.0
                             self.lbStatus.alpha = 1.0
                             self.lbReleased.alpha = 1.0
                             
-                            self.btnMoreAbout.isHidden = false
-                            self.constraintBottomButton.constant = 22
-
                             self.view.layoutIfNeeded();
                         }
                     })
-                    
                 }
             }
             self.lbTitle.text = movie.originalTitle
