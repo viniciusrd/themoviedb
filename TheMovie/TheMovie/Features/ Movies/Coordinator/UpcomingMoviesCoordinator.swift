@@ -36,9 +36,12 @@ class UpcomingMoviesCoordinator: Coordinator {
 }
 
 extension UpcomingMoviesCoordinator: UpcomingViewModelCoordinadorDelegate{
+    
     func showErrorUpcomingMovie(withError error: Error) {
-      let alert = AlertHelper(withTitle: "Ops", withMessage: error.localizedDescription)
-      self.navigationController.present(alert.showWarning(), animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = AlertHelper(withTitle: "Ops", withMessage: error.localizedDescription)
+            self.navigationController.present(alert.showWarning(), animated: true, completion: nil)
+        }
     }
     
     func didSelectedMovie(movie: Movie, from viewController: UIViewController) {
@@ -58,8 +61,10 @@ extension UpcomingMoviesCoordinator: MovieDetailsCoordinatorDelegate{
     }
     
     func showErrorMovieDetails(withError error: Error) {
-        let alert = AlertHelper(withTitle: "Ops", withMessage: error.localizedDescription)
-        self.navigationController.present(alert.showWarning(), animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = AlertHelper(withTitle: "Ops", withMessage: error.localizedDescription)
+            self.navigationController.present(alert.showWarning(), animated: true, completion: nil)
+        }
     }
     
     

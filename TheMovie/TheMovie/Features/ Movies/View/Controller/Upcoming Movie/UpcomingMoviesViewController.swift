@@ -31,13 +31,32 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        self.navigationController?.navigationBar.topItem?.title = viewModel.headerText
+    }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        let imageSearch = UIImage(named: "icSearchCopy")
+        let searchBarButtonItem = UIBarButtonItem(image: imageSearch, style: .done, target: self, action: #selector(self.createSearchBar))
+        self.navigationItem.setRightBarButton(searchBarButtonItem, animated: true)
+        self.navigationItem.rightBarButtonItem?.style = .plain
+        self.navigationItem.hidesSearchBarWhenScrolling = true
+        
         self.navigationController?.navigationBar.topItem?.title = viewModel.headerText
     }
     
-//    override func setupNavigationBar() {
-//        super.setupNavigationBar()
-//        
-//    }
+    
+    @objc func createSearchBar()  {
+        
+        let searchBar = UISearchBar()
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.placeholder = "Search..."
+        searchBar.delegate = self
+        searchBar.barTintColor = .black
+        searchBar.becomeFirstResponder()
+        self.navigationItem.titleView = searchBar
+        self.navigationItem.setRightBarButton(nil, animated: true)
+    }
     
     func reloadData()  {
         DispatchQueue.main.async {
@@ -110,5 +129,30 @@ extension UpcomingMoviesViewController: UpcomingViewModelDelegate{
             self.aiLoading.stopAnimating()
             self.aiLoading.isHidden = true
         }
+    }
+}
+
+extension UpcomingMoviesViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.viewModel.searchText = searchText
+        print(self.viewModel.searchText ?? "empty")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let searchText = self.viewModel.searchText, !searchText.isEmpty {
+            self.viewModel.searchMovie(searchText: searchText)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        UIView.transition(with: self.view, duration: 2.5, options: .transitionCrossDissolve, animations: {
+            searchBar.isHidden = true
+            self.setupNavigationBar()
+            self.view.layoutIfNeeded()
+        })
+        searchBar.resignFirstResponder()
+        self.viewModel.searchText = ""
     }
 }

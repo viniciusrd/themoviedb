@@ -13,9 +13,9 @@ protocol UpcomingViewModelType {
     var movies: [Movie] { get set }
     
     var headerText: String { get }
+    var searchText: String? {get set}
     
     func viewDidLoad()
-    func searchFor(text: String)
     func didSelectRow(_ row: Int, from controller: UIViewController)
     func numberOfItems() -> Int
 }
