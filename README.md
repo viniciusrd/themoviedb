@@ -1,11 +1,14 @@
 # iOS Design Patterns MVVM-C 
 > This project is app for cinephiles and movie hobbyists. This version simple and limited to show the list of upcoming movies. The MVP of the app was developed with Swift using Design Patterns MVVM-C.
 
-<img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/1.png" width="200" height="350">
-<img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/2.png" width="200" height="350">
-<img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/3.png" width="200" height="350">
-<img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/4.png" width="200" height="350">
-<img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/5.png" width="200" height="350">
+<p float="left">
+    <img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/1.png" width="200" height="350">
+    <img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/2.png" width="200" height="350">
+    <img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/3.png" width="200" height="350">
+    <img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/4.png" width="200" height="350">
+    <img src="https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/5.png" width="200" height="350">
+</p>
+
 
 
 > It is a combination of the Model-View-ViewModel architecture, plus the Coordinator pattern.
