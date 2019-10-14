@@ -1,7 +1,13 @@
 # iOS Design Patterns MVVM-C 
-This project is app for cinephiles and movie hobbyists. This version simple and limited to show the list of upcoming movies. The MVP of the app was developed with Swift using Design Patterns MVVM-C.
+> This project is app for cinephiles and movie hobbyists. This version simple and limited to show the list of upcoming movies. The MVP of the app was developed with Swift using Design Patterns MVVM-C.
 
-It is a combination of the Model-View-ViewModel architecture, plus the Coordinator pattern.
+![alt text](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/1.png)
+![alt text](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/2.png)
+![alt text](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/3.png)
+![alt text](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/4.png)
+![alt text](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/5.png)
+
+> It is a combination of the Model-View-ViewModel architecture, plus the Coordinator pattern.
 
 ![alt text](https://miro.medium.com/max/3254/1*d1DXDtaoZVm8J-exVOkSOw.png)
 
@@ -14,3 +20,6 @@ It is a combination of the Model-View-ViewModel architecture, plus the Coordinat
 ```
 pod install
 ```
+
+# Future implementations
+
