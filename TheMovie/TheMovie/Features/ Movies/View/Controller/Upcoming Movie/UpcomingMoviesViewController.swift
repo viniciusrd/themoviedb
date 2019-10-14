@@ -117,7 +117,6 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
             guard let page = self.viewModel.pagination?.page else { return }
             self.viewModel.pagination?.page = page + 1
             self.viewModel.upcomingMovies()
-            self.stopAnimation = false
         }else{
             self.svBottomLoading.isHidden = true
             self.aiBottomLoading.stopAnimating()
@@ -174,6 +173,7 @@ extension UpcomingMoviesViewController: UISearchBarDelegate{
         searchBar.resignFirstResponder()
         if let searchText = self.viewModel.searchText, !searchText.isEmpty {
             self.viewModel.searchMovie(searchText: searchText)
+            self.stopAnimation = false
         }
     }
     
@@ -186,5 +186,6 @@ extension UpcomingMoviesViewController: UISearchBarDelegate{
         })
         searchBar.resignFirstResponder()
         self.viewModel.searchText = ""
+        self.viewModel.viewDidLoad()
     }
 }

@@ -24,6 +24,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         ivCoverMovie.image = nil
         lbNameMovie.text = nil
+        self.aiLoading.startAnimating()
     }
     
     func hideAnimetion() {
@@ -33,7 +34,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         if let posterURL =  movie.posterPath {
             ivCoverMovie.setImageFromURL(toPath: posterURL, toType: .compressedImage, completion: { (complete) in
                 DispatchQueue.main.async() {
-                    if complete, self.aiLoading.isAnimating{
+                    if complete{
                         self.aiLoading.stopAnimating()
                         self.aiLoading.isHidden = true
                     }

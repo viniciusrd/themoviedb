@@ -14,29 +14,20 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
     
     @IBOutlet weak var scroolView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    
-    
     @IBOutlet weak var coverView: CustomView!
     @IBOutlet weak var ivCoverMovie: UIImageView!
-    
     @IBOutlet weak var svInfo: UIStackView!
-    
     @IBOutlet weak var svTitle: UIStackView!
     @IBOutlet weak var svViewReleased: UIStackView!
     @IBOutlet weak var svOverview: UIStackView!
-    
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbSubtitle: UILabel!
-    
     @IBOutlet weak var lbReleased: UILabel!
     @IBOutlet weak var lbDescription: CustomLabel!
-    
     @IBOutlet weak var aiLoading: UIActivityIndicatorView!
-    
     @IBOutlet weak var btnMoreAbout: CustomButton!
-    
     @IBOutlet weak var constraintTopSvInfo: NSLayoutConstraint!
-    //    @IBOutlet weak var constraintBottomButton: NSLayoutConstraint!
+    
     
     @IBOutlet weak var lbRuntime: UILabel!
     @IBOutlet weak var lbGenre: UILabel!
@@ -54,17 +45,10 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
-    
-//    override func setupNavigationBar() {
-//        super.setupNavigationBar()
-//       
-//    }
     
     override func setupUI()  {
         super.setupUI()
-         self.navigationController?.navigationBar.topItem?.title = viewModel.headerText
         self.ivCoverMovie.isHidden = true
         self.svInfo.isHidden = true
         self.svOverview.isHidden = true
@@ -103,7 +87,7 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
                     })
                 }
             }
-            self.lbTitle.text = movie.originalTitle
+            self.lbTitle.text = movie.title
             self.lbSubtitle.text = movie.tagline
             self.lbStatus.text = "\(movie.status ?? ""): "
             self.lbDescription.text = movie.overview
@@ -112,7 +96,9 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsViewModel> {
             self.lbRuntime.text = "\(movie.runtime) min"
             self.lbVoteCount.text = String(movie.voteCount)
             
+            self.navigationController?.navigationBar.topItem?.title = movie.title
         }
+        
     }
     @IBAction func tapMoreAbout(_ sender: Any) {
         viewModel.didTapButtonMoreAbout(from: self)
