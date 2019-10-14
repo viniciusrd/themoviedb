@@ -20,6 +20,7 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
     @IBOutlet weak var constraintBottomSvLoading: NSLayoutConstraint!
     
     let reuseIdentifier = String(describing: MovieCollectionViewCell.self)
+    var stopAnimation: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,6 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.topItem?.title = viewModel.headerText
     }
     
     override func setupNavigationBar() {
@@ -61,20 +61,26 @@ class UpcomingMoviesViewController: BaseViewController<UpcomingMovieViewModel> {
         self.navigationItem.setRightBarButton(nil, animated: true)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isTracking{
+            stopAnimation = true
+        }
+    }
+    
     func reloadData()  {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-//            self.animationCollectionView()
+            self.animationCollectionView()
         }
     }
     
     func animationCollectionView()  {
-        //collectionView.
-        let diractionAnimation = AnimationType.from(direction: .bottom, offset: 30.0)
-        UIView.animate(views: collectionView.visibleCells,
-                           animations: [diractionAnimation],
-                           duration: 0.5)
-        
+        if !stopAnimation{
+            let diractionAnimation = AnimationType.from(direction: .bottom, offset: 30.0)
+            UIView.animate(views: collectionView.visibleCells,
+                               animations: [diractionAnimation],
+                               duration: 0.5)
+        }
     }
 }
 
@@ -98,7 +104,7 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
         let movie = viewModel.movies[indexPath.row]
         cell.setup(withMovie: movie)
-//        animationCollectionView()
+        animationCollectionView()
         return cell
     }
     
@@ -111,7 +117,7 @@ extension UpcomingMoviesViewController: UICollectionViewDataSource{
             guard let page = self.viewModel.pagination?.page else { return }
             self.viewModel.pagination?.page = page + 1
             self.viewModel.upcomingMovies()
-            
+            self.stopAnimation = false
         }else{
             self.svBottomLoading.isHidden = true
             self.aiBottomLoading.stopAnimating()

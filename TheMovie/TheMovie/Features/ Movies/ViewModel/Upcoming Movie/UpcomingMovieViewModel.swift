@@ -47,14 +47,16 @@ class UpcomingMovieViewModel: UpcomingViewModelType {
             switch response{
             case .success(let response):
                 guard let response = response else { return }
-                self.pagination = Pagination(page: response.page, totalResults: response.totalResults, totalPage: response.totalPage)
-                if self.pagination?.page ?? 1 > 1{
-                    print(response.movies)
-                    self.movies = response.movies
-                }else{
-                    self.movies = response.movies
+                if response.movies.count > 0 {
+                    self.pagination = Pagination(page: response.page, totalResults: response.totalResults, totalPage: response.totalPage)
+                    if self.pagination?.page ?? 1 > 1{
+                        print(response.movies)
+                        self.movies += response.movies as [Movie]
+                    }else{
+                        self.movies = response.movies
+                    }
+                    self.viewModelDelegate?.updateScreen()
                 }
-                self.viewModelDelegate?.updateScreen()
             case .failure(let error):
                 guard let error = error else { return }
                 print(error.localizedDescription)

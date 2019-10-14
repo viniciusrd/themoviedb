@@ -40,7 +40,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
                 }
             })
         }else{
-            ivCoverMovie.isHidden = true
+            self.aiLoading.stopAnimating()
+            self.aiLoading.isHidden = true
+            self.ivCoverMovie.isHidden = true
         }
         lbNameMovie.text = movie.originalTitle
     }
