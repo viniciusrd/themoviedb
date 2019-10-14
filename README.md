@@ -1,7 +1,9 @@
 # iOS Design Patterns MVVM-C 
 > This project is app for cinephiles and movie hobbyists. This version simple and limited to show the list of upcoming movies. The MVP of the app was developed with Swift using Design Patterns MVVM-C.
 
-![](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/1.png =250x250)
+<img src="(https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/1.png" width="100" height="150">
+![] =250x250)
+![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png =250x250)
 ![](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/2.png =250x250)
 ![](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/3.png =250x250)
 ![](https://github.com/viniciusrd/themoviedb/blob/master/Screenshot/4.png =250x250)
